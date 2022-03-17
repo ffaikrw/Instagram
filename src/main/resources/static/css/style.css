@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#wrap {
+	width: 1200px;
+	margin: auto;
+}
+
+header {
+	height: 50px;
+}
+
+.join-box {
+	width: 400px;
+}
+
+.join-box2 {
+	border: 1px solid #dedede;
+}
+
+.input-box {
+	width: 300px;
+}
+
+footer {
+	height: 50px;
+	color: #999;
+}
