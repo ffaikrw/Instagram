@@ -84,7 +84,6 @@
 			});
 			
 			
-			
 			// 회원가입 버튼
 			$("#joinBtn").on("click", function(){
 				
