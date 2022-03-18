@@ -29,16 +29,24 @@
 			<div class="join-box h-100">
 				<div class="join-box2 d-flex justify-content-center">
 					<div class="input-box">
+					
 						<h2 class="text-center my-4 font-weight-bold">회원가입</h2>
 						
-						<div class="d-flex">
-							<input type="text" id="loginId" class="form-control col-8" placeholder="아이디">
-							<button id="duplicateCheckBtn" class="btn btn-primary col-3 ml-3"><small>중복확인</small></button>
+						<input type="text" id="loginId" class="form-control" placeholder="아이디">
+						<div id="duplicateId" class="d-none">
+							<small class="text-danger">사용할 수 없는 아이디입니다.</small>
 						</div>
-						<div id="duplicateId" class="text-danger"><small>사용할 수 없는 아이디입니다.</small></div>
-						<div id="availableId" class="text-success"><small>사용 가능한 아이디입니다.</small></div>
+						<div id="availableId" class="d-none">
+							<small class="text-success">사용 가능한 아이디입니다.</small>
+						</div>
 						<input type="password" id="password" class="form-control mt-3" placeholder="비밀번호">
 						<input type="password" id="passwordConfirm" class="form-control mt-3" placeholder="비밀번호 확인">
+						<div id="notMatchPassword" class="d-none">
+							<small class="text-danger">비밀번호가 일치하지 않습니다.</small>
+						</div>
+						<div id="matchPassword" class="d-none">
+							<small class="text-success">비밀번호가 일치합니다.</small>
+						</div>
 						<input type="text" id="name" class="form-control mt-3" placeholder="이름">
 						<input type="text" id="email" class="form-control mt-3" placeholder="이메일">
 						
@@ -47,7 +55,7 @@
 				</div>
 				
 				<div class="join-box2 my-3 py-3 d-flex justify-content-center align-items-center">
-					<a href="#">로그인</a>
+					계정이 있으신가요? <a href="/user/signin_view" class="ml-1 font-weight-bold">로그인</a>
 				</div>
 			</div>
 		</section>
@@ -62,24 +70,95 @@
 	<script>
 	
 		$(document).ready(function(){
-			
-			// 중복체크 여부 저장 변수
-			var isChecked = false;
-			
-			// 중복된 상태인지 확인하는 변수
+
+			// 아이디가 중복된 상태인지 확인하는 변수
 			var isDuplicate = true;
 			
+			// 비밀번호가 일치하는지 확인하는 변수
+			var isNotMatch = true;
+
 			
-			// 사용자가 인풋에 변화를 주면 발생하는 이벤트
-			$("#urlInput").on("input", function(){
+			// 아이디 중복체크
+			$("#loginId").focusout(function(){
+				
+				let loginId = $("#loginId").val().trim();
+				
+				if (loginId == "") {
+					return;
+				}
+
+				$.ajax({
+					
+					type:"get"
+					, url:"/user/is_duplicate"
+					, data:{"loginId":loginId}
+					, success:function(data){
+						
+						$("#duplicateId").addClass("d-none");
+						$("#availableId").addClass("d-none");
+						
+						if(data.is_duplicate) {
+							$("#duplicateId").removeClass("d-none");
+						} else {
+							$("#availableId").removeClass("d-none");
+						}
+						
+						isDuplicate = data.is_duplicate;
+						
+					}
+					, error:function(){
+						alert("중복확인 통신 에러");
+					}
+					
+				});
+				
+			});
+			
+			
+			// 아이디 중복확인 초기화
+			$("#loginId").on("input", function(){
 				
 				// 중복확인 변수값 초기화
-				isChecked = false;
 				isDuplicate = true;
 				
 				// 중복관련 텍스트 숨기기
 				$("#duplicateId").addClass("d-none");
 				$("#availableId").addClass("d-none");
+				
+			});
+			
+			
+			// 비밀번호 일치 여부
+			$("#passwordConfirm").focusout(function(){
+				
+				let password = $("#password").val().trim();
+				let passwordConfirm = $("#passwordConfirm").val().trim();
+				
+				if (password == "") {
+					return;
+				}
+				
+				$("#notMatchPassword").addClass("d-none");
+				$("#matchPassword").addClass("d-none");
+				
+				if (password == passwordConfirm) {
+					isNotMatch = false;
+					$("#matchPassword").removeClass("d-none");
+				} else {
+					isNotMatch = true;
+					$("#notMatchPassword").removeClass("d-none");
+				}
+				
+			});
+			
+			
+			// 비밀번호 일치 여부 초기화
+			$("#passwordConfirm").on("input", function(){
+				
+				isNotMatch = true;
+				
+				$("#notMatchPassword").addClass("d-none");
+				$("#matchPassword").addClass("d-none");
 				
 			});
 			
@@ -99,13 +178,17 @@
 					return;
 				}
 				
+				if (isDuplicate) {
+					return;
+				}
+				
 				if (password == "") {
 					alert("비밀번호를 입력하세요.");
 					return;
 				}
 				
-				if (password != passwordConfirm) {
-					alert("비밀번호가 일치하지 않습니다.");
+				if (isNotMatch) {
+					$("#notMatchPassword").removeClass("d-none");
 					return;
 				}
 				
@@ -127,7 +210,7 @@
 					success: function(data){
 						
 						if(data.result == "success") {
-							alert("회원가입 성공");
+							location.href="/user/signin_view";
 						} else {
 							alert("회원가입 실패");
 						}

@@ -42,4 +42,23 @@
 		
 	</select>
 	
+	
+	<select id="selectUser" parameterType="map" resultType="com.ffaikrw.instagram.user.model.User">
+		
+		select
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		from
+			`user`
+		where
+			`loginId` = #{loginId}
+			and `password` = #{password}
+		
+	</select>
+	
 </mapper>
