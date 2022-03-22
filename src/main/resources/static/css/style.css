@@ -9,6 +9,53 @@ header {
 	height: 50px;
 }
 
+.header-logo:hover {
+	text-decoration: none;
+}
+
+.post-section {
+	background-color: #f7f7f7;
+}
+
+.post-box {
+	width: 600px;
+	height: 870px;
+}
+
+.post-header {
+	height: 60px;
+}
+
+.post-header-img {
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.more-icon {
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.img-box {
+	height: 600px;
+}
+
+.like-btn {
+	font-size: 30px;
+}
+
+.like-count {
+	font-size: 18px;
+}
+
+.comment-box {
+	font-size: 18px;
+}
+
+.comment-icon {
+	font-size: 30px;
+}
+
 .join-box {
 	width: 400px;
 }
