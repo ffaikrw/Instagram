@@ -31,6 +31,7 @@
 		
 		<section class="post-section pb-5">
 			
+			<c:forEach >
 			<div class="d-flex justify-content-center pt-5">
 				<div class="post-box bg-white">
 					<div class="post-header d-flex justify-content-between">
@@ -67,85 +68,8 @@
 					</div>
 				</div>
 			</div>
+			</c:forEach>
 			
-			<div class="d-flex justify-content-center pt-5">
-				<div class="post-box bg-white">
-					<div class="post-header d-flex justify-content-between">
-						<div class="d-flex align-items-center">
-							<span class="post-header-img text-secondary ml-3"><i class="bi bi-circle-fill"></i></span>
-							<h5 class="ml-2 mt-1">jhwn0202</h5>
-						</div>
-						<div class="d-flex align-items-center">
-							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
-						</div>	
-					</div>
-					<div class="img-box bg-success"></div>
-					<div class="like ml-3">
-						<span class="like-btn"><i class="bi bi-heart"></i></span>
-						<b class="like-count">좋아요 10개</b>
-					</div>
-					<div class="comment-box ml-3">
-						<div class="mt-1">
-							<b>jhwn0202</b> <span>댓글1</span>
-						</div>
-						<div class="mt-1">
-							<b>cccc</b> <span>댓글2</span>
-						</div>
-					</div>
-					<div class="upload-time mt-1 ml-3">
-						<span class="text-secondary">2022년 3월 22일 오후 5시 11분</span>
-					</div>
-					<div class="d-flex mt-2 mb-3 ml-3">
-						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
-						<div class="input-group col-11">
-							<input type="text" class="form-control" placeholder="댓글 달기">
-							<button class="btn btn-outline-secondary" type="button">작성</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="d-flex justify-content-center pt-5">
-				<div class="post-box bg-white">
-					<div class="post-header d-flex justify-content-between">
-						<div class="d-flex align-items-center">
-							<span class="post-header-img text-secondary ml-3"><i class="bi bi-circle-fill"></i></span>
-							<h5 class="ml-2 mt-1">cccc</h5>
-						</div>
-						<div class="d-flex align-items-center">
-							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
-						</div>	
-					</div>
-					<div class="img-box bg-warning"></div>
-					<div class="like ml-3">
-						<span class="like-btn"><i class="bi bi-heart"></i></span>
-						<b class="like-count">좋아요 10개</b>
-					</div>
-					<div class="comment-box ml-3">
-						<div class="mt-1">
-							<b>jhwn0202</b> <span>댓글1</span>
-						</div>
-						<div class="mt-1">
-							<b>cccc</b> <span>댓글2</span>
-						</div>
-					</div>
-					<div class="upload-time mt-1 ml-3">
-						<span class="text-secondary">2022년 3월 22일 오후 5시 11분</span>
-					</div>
-					<div class="d-flex mt-2 mb-3 ml-3">
-						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
-						<div class="input-group col-11">
-							<input type="text" class="form-control" placeholder="댓글 달기">
-							<button class="btn btn-outline-secondary" type="button">작성</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			
-			
-			
-		
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />

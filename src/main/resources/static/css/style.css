@@ -2,6 +2,7 @@
 
 #wrap {
 	width: 1200px;
+	height: 500px;
 	margin: auto;
 }
 
@@ -66,6 +67,15 @@ header {
 
 .input-box {
 	width: 300px;
+}
+
+.create-box {
+	width: 600px;
+	border: 1px solid #dedede;
+}
+
+.create-box2 {
+	width: 570px;
 }
 
 footer {
