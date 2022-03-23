@@ -79,7 +79,7 @@
 					, contentType:false
 					, success:function(data){
 						if (data.result == "success") {
-							alert("업로드 성공");
+							location.href="/post/timeline";
 						} else {
 							alert("업로드 실패");
 						}

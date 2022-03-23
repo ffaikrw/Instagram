@@ -31,33 +31,37 @@
 		
 		<section class="post-section pb-5">
 			
-			<c:forEach >
+			<c:forEach var="timeline" items="${ timeline }">
 			<div class="d-flex justify-content-center pt-5">
 				<div class="post-box bg-white">
 					<div class="post-header d-flex justify-content-between">
 						<div class="d-flex align-items-center">
-							<span class="post-header-img text-secondary ml-3"><i class="bi bi-circle-fill"></i></span>
-							<h5 class="ml-2 mt-1">ffaikrw</h5>
+							<span class="post-header-img text-secondary mt-2 ml-3"><i class="bi bi-circle-fill"></i></span>
+							<span class="post-header-loginId ml-2"><b>${ timeline.loginId }</b></span>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
 						</div>	
 					</div>
-					<div class="img-box bg-info"></div>
-					<div class="like ml-3">
+					<img src="${ timeline.imagePath }" class="img-box">
+					<div class="like mt-1 ml-3">
 						<span class="like-btn"><i class="bi bi-heart"></i></span>
 						<b class="like-count">좋아요 10개</b>
 					</div>
-					<div class="comment-box ml-3">
-						<div class="mt-1">
+					<div class="content-box ml-3 my-3">
+						<b>${ timeline.loginId }</b>
+						<span>${ timeline.content }</span>
+					</div>
+					<div class="comment-box mt-1 ml-3">
+						<div>
 							<b>jhwn0202</b> <span>댓글1</span>
 						</div>
-						<div class="mt-1">
+						<div>
 							<b>cccc</b> <span>댓글2</span>
 						</div>
 					</div>
 					<div class="upload-time mt-1 ml-3">
-						<span class="text-secondary">2022년 3월 22일 오후 5시 11분</span>
+						<span class="text-secondary"><fmt:formatDate value="${ timeline.createdAt }" pattern="yyyy년 M월 dd일 HH시 m분 s초" /></span>
 					</div>
 					<div class="d-flex mt-2 mb-3 ml-3">
 						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
