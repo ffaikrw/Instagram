@@ -36,4 +36,7 @@ public class PostController {
 		return "post/create";
 	}
 	
+	
+
+	
 }

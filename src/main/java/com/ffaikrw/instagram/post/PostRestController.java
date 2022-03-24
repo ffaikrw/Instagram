@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,35 @@ public class PostRestController {
 		}
 		
 		return resultMap;
+	}
+	
+	
+	// 게시물 삭제
+	@GetMapping("/delete")
+	public Map<String, String> delete(@RequestParam("postId") int id) {
+		
+		int count = postBO.deletePost(id);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if (count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+		
+	}
+	
+	
+	// 댓글 달기
+	@PostMapping("/comment/create")
+	public Map<String, String> createComment(
+			@RequestParam("postId") int postId
+			
+			) {
+		
 	}
 	
 	

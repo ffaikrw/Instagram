@@ -34,8 +34,9 @@
 				<div class="create-box2">
 					<h2 class="text-center my-4">새 게시물 만들기</h2>
 					<textarea id="contentInput" class="form-control" rows="6"></textarea>
-					<div class="d-flex justify-content-between my-4">
-						<input type="file" id="fileInput">
+					<div class="d-flex justify-content-between align-items-center my-4">
+						<a href="#" id="imageIcon"><i class="bi bi-camera camera-icon text-dark"></i></a>
+						<input type="file" id="fileInput" class="d-none">
 						<button id="uploadBtn" class="btn btn-primary">업로드</button>
 					</div>
 				</div>
@@ -53,19 +54,21 @@
 			$("#uploadBtn").on("click", function(){
 				
 				let content = $("#contentInput").val();
-				let file = $("#fileInput").val();
 				
 				if (content == "") {
 					alert("내용을 입력하세요.");
 					return;
 				}
 				
-				if (file == "" ) {
+				// 파일 유효성 검사
+				// $("#fileInput")[0].files[0] => files는 배열
+				if ($("#fileInput")[0].files.length == 0) { // 파일 선택이 되지 않아서 배열이 비어있는지
 					alert("사진을 첨부해주세요.");
 					return;
 				}
+
 				
-				var formData = new FormData();
+				let formData = new FormData();
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);
 				
@@ -89,6 +92,14 @@
 					}
 					
 				});
+				
+			});
+			
+			
+			$("#imageIcon").on("click", function(){
+				
+				// fileInput 클릭된 효과
+				$("#fileInput").click();
 				
 			});
 			

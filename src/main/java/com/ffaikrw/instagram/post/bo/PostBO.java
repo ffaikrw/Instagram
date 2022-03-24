@@ -32,4 +32,10 @@ public class PostBO {
 		
 	}
 	
+	
+	// 게시물 삭제
+	public int deletePost(int id) {
+		return postDAO.deletePost(id);
+	}
+	
 }

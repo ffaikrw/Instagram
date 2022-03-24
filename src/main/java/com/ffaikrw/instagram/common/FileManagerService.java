@@ -18,6 +18,13 @@ public class FileManagerService {
 	
 	public static String saveFile(int userId, MultipartFile file) {
 		
+		if (file == null) {
+			
+			logger.error("FileManagerService-saveFile : 파일 없음");
+			
+			return null;
+		}
+		
 		// 1. 파일 경로
 		String directoryName = userId + "_" + System.currentTimeMillis() + "/";
 		

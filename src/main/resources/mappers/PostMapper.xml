@@ -30,6 +30,7 @@
 		
 	</insert>
 	
+	
 	<select id="selectAllPost" resultType="com.ffaikrw.instagram.post.model.Post">
 		
 		select
@@ -46,5 +47,15 @@
 			`id` desc
 	
 	</select>
+	
+	
+	<delete id="deletePost" parameterType="int">
+	
+		delete from
+			`post`
+		where
+			id = #{id}
+	
+	</delete>
 
 </mapper>

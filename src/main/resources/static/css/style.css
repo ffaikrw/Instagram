@@ -48,7 +48,7 @@ header {
 	font-size: 15px;
 }
 
-.like-btn {
+.like-icon {
 	font-size: 25px;
 }
 
@@ -83,6 +83,10 @@ header {
 
 .create-box2 {
 	width: 570px;
+}
+
+.camera-icon {
+	font-size: 30px;
 }
 
 footer {

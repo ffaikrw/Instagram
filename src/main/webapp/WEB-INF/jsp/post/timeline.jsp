@@ -33,41 +33,62 @@
 			
 			<c:forEach var="timeline" items="${ timeline }">
 			<div class="d-flex justify-content-center pt-5">
+			
+				<!-- 게시물 -->
 				<div class="post-box bg-white">
+				
+					<!-- 게시물 헤더: 게시물 작성자 정보, 삭제 버튼 -->
 					<div class="post-header d-flex justify-content-between">
 						<div class="d-flex align-items-center">
 							<span class="post-header-img text-secondary mt-2 ml-3"><i class="bi bi-circle-fill"></i></span>
 							<span class="post-header-loginId ml-2"><b>${ timeline.loginId }</b></span>
 						</div>
 						<div class="d-flex align-items-center">
+						<!-- 게시물 삭제 -->
+						<c:if test="${ timeline.userId eq userId }">
+							<button data-post-id="${ timeline.id }" class="delete-btn btn btn-sm btn-danger">삭제</button>
+						</c:if>	
 							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
 						</div>	
 					</div>
+					
+					<!-- 사진 -->
 					<img src="${ timeline.imagePath }" class="img-box">
+					
+					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
-						<span class="like-btn"><i class="bi bi-heart"></i></span>
+						<span class="like-icon"><i class="bi bi-heart"></i></span>
+						<button data-post-id="${ timeline.id }" data-user-id="${ userId }" data-login-id="${ userLoginId }" class="like-btn">좋아요</button>
 						<b class="like-count">좋아요 10개</b>
 					</div>
+					
+					<!-- 게시물 내용 -->
 					<div class="content-box ml-3 my-3">
 						<b>${ timeline.loginId }</b>
 						<span>${ timeline.content }</span>
 					</div>
+					
+					<!-- 댓글 내용 -->
 					<div class="comment-box mt-1 ml-3">
 						<div>
-							<b>jhwn0202</b> <span>댓글1</span>
+							<b>ddd</b> <span>댓글1</span>
 						</div>
 						<div>
 							<b>cccc</b> <span>댓글2</span>
 						</div>
 					</div>
+					
+					<!-- 작성 시간 -->
 					<div class="upload-time mt-1 ml-3">
 						<span class="text-secondary"><fmt:formatDate value="${ timeline.createdAt }" pattern="yyyy년 M월 dd일 HH시 m분 s초" /></span>
 					</div>
+					
+					<!-- 댓글 달기 -->
 					<div class="d-flex mt-2 mb-3 ml-3">
 						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
 						<div class="input-group col-11">
-							<input type="text" class="form-control" placeholder="댓글 달기">
-							<button class="btn btn-outline-secondary" type="button">작성</button>
+							<input type="text" class="comment-input form-control" placeholder="댓글 달기">
+							<button data-post-id="${ timeline.id }" data-user-id="${ userId }" data-login-id="${ userLoginId }" class="comment-btn btn btn-outline-secondary" type="button">작성</button>
 						</div>
 					</div>
 				</div>
@@ -78,8 +99,113 @@
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
-	
 	</div>
+	
+	
+	<script>
+	
+		$(document).ready(function(){
+			
+			
+			// 삭제 버튼
+			$(".delete-btn").on("click", function(){
+				
+				let id = $(this).data("post-id");
+				
+				$.ajax({
+					
+					type:"get"
+					, url:"/post/delete"
+					, data:{"postId":id}
+					, success:function(data) {
+						
+						if (data.result == "success") {
+							alert("삭제되었습니다.");
+							location.reload();
+						} else {
+							alert("삭제 실패");
+						}
+						
+					}
+					, error:function() {
+						alert("삭제 통신 에러");
+					}
+					
+				});
+				
+			});
+			
+			
+			// 댓글 달기 버튼
+			$(".comment-btn").on("click", function(){
+				
+				let postId = $(this).data("post-id");
+				let userId = $(this).data("user-id");
+				let loginId = $(this).data("login-id");
+				let comment = $(".comment-input").val().trim();
+				
+				$.ajax({
+					
+					type:"post"
+					, url:"/post/comment/create"
+					, data:{"postId":postId, "userId":userId, "loginId":loginId, "comment":comment}
+					, success:function(data){
+					
+						if (data.result == "success") {
+							alert("댓글 달기 성공");
+							location.reload();
+						} else {
+							alert("댓글 달기 실패");
+						}
+						
+					}
+					, error:function(){
+						alert("댓글 달기 통신 에러");
+					}
+						
+				});
+				
+			});
+			
+			
+			
+			// 좋아요 버튼
+<!--
+				$(".like-btn").on("click", function(){
+				
+				let postId = $(this).data("post-id");
+				let userId = $(this).data("user-id");
+				let loginId = $(this).data("login-id");
+				
+				// 버튼을 눌렀을 때 빈하트이면 채워진하트로 변경, 아니면 그 반대
+				
+				$.ajax({
+					
+					type:"get"
+					, url:"/post/like"
+					, data:{"postId":postId, "userId":userId, "loginId":loginId}
+					, success:function(data){
+						
+						if (data.result == "success") {
+							alert("좋아요 성공");
+							location.reload();
+						} else {
+							alert("좋아요 실패");
+						}
+						
+					}
+					, error:function(){
+						alert("좋아요 통신 에러");
+					}
+					
+				});
+				
+			});
+-->
+			
+		});
+	
+	</script>
 	
 
 </body>
