@@ -73,8 +73,22 @@ public class PostRestController {
 	@PostMapping("/comment/create")
 	public Map<String, String> createComment(
 			@RequestParam("postId") int postId
-			
+			, @RequestParam("userId") int userId
+			, @RequestParam("loginId") String loginId
+			, @RequestParam("comment") String comment
 			) {
+		
+		int count = postBO.addComment(postId, userId, loginId, comment);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if (count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
 		
 	}
 	

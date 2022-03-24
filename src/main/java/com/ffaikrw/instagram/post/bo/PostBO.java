@@ -38,4 +38,14 @@ public class PostBO {
 		return postDAO.deletePost(id);
 	}
 	
+	
+	// 댓글 작성
+	public int addComment(int postId, int userId, String loginId, String comment) {
+		return postDAO.insertComment(postId, userId, loginId, comment);
+	}
+	
+	
+	// 댓글 보여주기
+	public Comment 
+	
 }

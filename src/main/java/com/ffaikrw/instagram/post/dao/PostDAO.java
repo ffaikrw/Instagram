@@ -26,4 +26,13 @@ public interface PostDAO {
 	// 게시물 삭제
 	public int deletePost(@Param("id") int id);
 	
+	
+	// 댓글 작성
+	public int insertComment(
+			@Param("postId") int postId
+			, @Param("userId") int userId
+			, @Param("loginId") String loginId
+			, @Param("comment") String comment
+			);
+	
 }

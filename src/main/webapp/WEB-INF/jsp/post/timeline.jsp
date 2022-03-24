@@ -70,9 +70,11 @@
 					
 					<!-- 댓글 내용 -->
 					<div class="comment-box mt-1 ml-3">
+					<c:forEach var="${ comment }" items="${  }">
 						<div>
-							<b>ddd</b> <span>댓글1</span>
+							<b>${ comment.loginId }</b> <span>${ comment.comment }</span>
 						</div>
+					</c:forEach>
 						<div>
 							<b>cccc</b> <span>댓글2</span>
 						</div>
