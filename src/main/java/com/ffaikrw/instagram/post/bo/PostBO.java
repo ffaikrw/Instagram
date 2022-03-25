@@ -1,6 +1,5 @@
 package com.ffaikrw.instagram.post.bo;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,13 @@ public class PostBO {
 	
 	// 타임라인
 	public List<Post> getTimeline() {
+		
+		// 포스트마다 댓글, 좋아요 가져오기
+		
+		// 그 정보를 하나의 새로운 데이터 클래스(DTO)를 만들어서 구성
+		
+		// 새로운 DTO를 리스트 형태로 구성
+		
 		return postDAO.selectAllPost();
 	}
 	
@@ -39,13 +45,5 @@ public class PostBO {
 	}
 	
 	
-	// 댓글 작성
-	public int addComment(int postId, int userId, String loginId, String comment) {
-		return postDAO.insertComment(postId, userId, loginId, comment);
-	}
-	
-	
-	// 댓글 보여주기
-	public Comment 
-	
+
 }

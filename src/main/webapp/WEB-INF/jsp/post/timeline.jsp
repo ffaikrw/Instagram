@@ -57,8 +57,8 @@
 					
 					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
-						<span class="like-icon"><i class="bi bi-heart"></i></span>
-						<button data-post-id="${ timeline.id }" data-user-id="${ userId }" data-login-id="${ userLoginId }" class="like-btn">좋아요</button>
+						<a href="#" data-post-id="${ timeline.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
+						<a href="#" data-post-id="${ timeline.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
 						<b class="like-count">좋아요 10개</b>
 					</div>
 					
@@ -70,13 +70,8 @@
 					
 					<!-- 댓글 내용 -->
 					<div class="comment-box mt-1 ml-3">
-					<c:forEach var="${ comment }" items="${  }">
 						<div>
-							<b>${ comment.loginId }</b> <span>${ comment.comment }</span>
-						</div>
-					</c:forEach>
-						<div>
-							<b>cccc</b> <span>댓글2</span>
+							<b>ccc</b> <span>댓글!!</span>
 						</div>
 					</div>
 					
@@ -89,8 +84,8 @@
 					<div class="d-flex mt-2 mb-3 ml-3">
 						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
 						<div class="input-group col-11">
-							<input type="text" class="comment-input form-control" placeholder="댓글 달기">
-							<button data-post-id="${ timeline.id }" data-user-id="${ userId }" data-login-id="${ userLoginId }" class="comment-btn btn btn-outline-secondary" type="button">작성</button>
+							<input type="text" id="commentInput${ timeline.id }" class="form-control" placeholder="댓글 달기">
+							<button data-post-id="${ timeline.id }" class="comment-btn btn btn-outline-secondary" type="button">작성</button>
 						</div>
 					</div>
 				</div>
@@ -142,15 +137,18 @@
 			$(".comment-btn").on("click", function(){
 				
 				let postId = $(this).data("post-id");
-				let userId = $(this).data("user-id");
-				let loginId = $(this).data("login-id");
-				let comment = $(".comment-input").val().trim();
+				let comment = $("#commentInput" + postId).val().trim();
+				
+				if (comment == "") {
+					alert("댓글을 입력하세요.");
+					return;
+				}
 				
 				$.ajax({
 					
 					type:"post"
 					, url:"/post/comment/create"
-					, data:{"postId":postId, "userId":userId, "loginId":loginId, "comment":comment}
+					, data:{"postId":postId, "comment":comment}
 					, success:function(data){
 					
 						if (data.result == "success") {
@@ -172,20 +170,17 @@
 			
 			
 			// 좋아요 버튼
-<!--
-				$(".like-btn").on("click", function(){
+			$(".like-btn").on("click", function(e){
+				
+				e.preventDefault();
 				
 				let postId = $(this).data("post-id");
-				let userId = $(this).data("user-id");
-				let loginId = $(this).data("login-id");
-				
-				// 버튼을 눌렀을 때 빈하트이면 채워진하트로 변경, 아니면 그 반대
 				
 				$.ajax({
 					
 					type:"get"
 					, url:"/post/like"
-					, data:{"postId":postId, "userId":userId, "loginId":loginId}
+					, data:{"postId":postId}
 					, success:function(data){
 						
 						if (data.result == "success") {
@@ -203,7 +198,38 @@
 				});
 				
 			});
--->
+			
+			
+			// 좋아요 취소 버튼
+			$(".delete-like-btn").on("click", function(e){
+				
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					
+					type:"get"
+					, url:"/post/like_delete"
+					, data:{"postId":postId}
+					, success:function(data){
+						
+						if (data.result == "success") {
+							alert("좋아요 취소 성공");
+							location.reload();
+						} else {
+							alert("좋아요 취소 실패");
+						}
+						
+					}
+					, error:function(){
+						alert("좋아요 통신 에러");
+					}
+					
+				});
+				
+			});
+			
 			
 		});
 	

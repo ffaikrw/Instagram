@@ -1,4 +1,4 @@
-package com.ffaikrw.instagram.post.model;
+package com.ffaikrw.instagram.post.comment.model;
 
 import java.util.Date;
 
@@ -55,5 +55,7 @@ public class Comment {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
 	
 }

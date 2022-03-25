@@ -1,4 +1,4 @@
-package com.ffaikrw.instagram.post;
+package com.ffaikrw.instagram.post.like;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,27 +8,24 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.ffaikrw.instagram.post.bo.PostBO;
+import com.ffaikrw.instagram.post.like.bo.LikeBO;
 
 @RestController
 @RequestMapping("/post")
-public class PostRestController {
+public class LikeRestController {
 	
 	@Autowired
-	private PostBO postBO;
+	private LikeBO likeBO;
 	
 	
-	// 게시물 작성 API
-	@PostMapping("/create")
-	public Map<String, String> create(
-			@RequestParam("content") String content
-			, @RequestParam("file") MultipartFile file
+	// 좋아요 누르기
+	@GetMapping("/like")
+	public Map<String, String> addLike(
+			@RequestParam("postId") int postId
 			, HttpServletRequest request
 			) {
 		
@@ -36,25 +33,7 @@ public class PostRestController {
 		int userId = (Integer)session.getAttribute("userId");
 		String loginId = (String)session.getAttribute("userLoginId");
 		
-		int count = postBO.addPost(userId, loginId, content, file);
-		
-		Map<String, String> resultMap = new HashMap<>();
-		
-		if (count == 1) {
-			resultMap.put("result", "success");
-		} else {
-			resultMap.put("result", "fail");
-		}
-		
-		return resultMap;
-	}
-	
-	
-	// 게시물 삭제
-	@GetMapping("/delete")
-	public Map<String, String> delete(@RequestParam("postId") int id) {
-		
-		int count = postBO.deletePost(id);
+		int count = likeBO.addLike(postId, userId, loginId);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
@@ -69,6 +48,29 @@ public class PostRestController {
 	}
 	
 	
-
+	// 좋아요 취소
+	@GetMapping("/like_delete")
+	public Map<String, String> deleteLike(
+			@RequestParam("postId") int postId
+			, HttpServletRequest request
+			) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = likeBO.deleteLike(postId, userId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if (count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+		
+	}
+	
 	
 }

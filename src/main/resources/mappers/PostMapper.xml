@@ -59,27 +59,5 @@
 	</delete>
 	
 	
-	<insert id="insertComment" parameterType="map">
-	
-		insert into `comment`
-		(
-			`postId`
-			, `userId`
-			, `loginId`
-			, `comment`
-			, `createdAt`
-			, `updatedAt`
-		)
-		value
-		(
-			#{postId}
-			, #{userId}
-			, #{loginId}
-			, #{comment}
-			, now()
-			, now()
-		)
-	
-	</insert>
 
 </mapper>
