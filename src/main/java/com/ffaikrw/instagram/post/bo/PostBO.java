@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ffaikrw.instagram.common.FileManagerService;
+import com.ffaikrw.instagram.post.comment.bo.CommentBO;
 import com.ffaikrw.instagram.post.dao.PostDAO;
+import com.ffaikrw.instagram.post.like.bo.LikeBO;
 import com.ffaikrw.instagram.post.model.Post;
 
 @Service
@@ -16,10 +18,17 @@ public class PostBO {
 	@Autowired
 	private PostDAO postDAO;
 	
+	@Autowired
+	private CommentBO commentBO;
+	
+	@Autowired
+	private LikeBO likeBO;
+	
 	// 타임라인
 	public List<Post> getTimeline() {
 		
 		// 포스트마다 댓글, 좋아요 가져오기
+		
 		
 		// 그 정보를 하나의 새로운 데이터 클래스(DTO)를 만들어서 구성
 		
