@@ -22,7 +22,7 @@ public class LikeRestController {
 	private LikeBO likeBO;
 	
 	
-	// 좋아요 누르기
+	// 좋아요 누르기 API
 	@GetMapping("/like")
 	public Map<String, String> addLike(
 			@RequestParam("postId") int postId
@@ -48,7 +48,7 @@ public class LikeRestController {
 	}
 	
 	
-	// 좋아요 취소
+	// 좋아요 취소 API
 	@GetMapping("/like_delete")
 	public Map<String, String> deleteLike(
 			@RequestParam("postId") int postId
@@ -69,6 +69,19 @@ public class LikeRestController {
 		}
 		
 		return resultMap;
+		
+	}
+	
+	
+	// 좋아요 중복확인 API
+	@GetMapping("/like_duplicate")
+	public Map<String, Boolean> likeIsDuplicate(
+			@RequestParam("postId") int postId
+			, HttpServletRequest request
+			) {
+		
+		HttpSession session = request.getSession();
+		
 		
 	}
 	
