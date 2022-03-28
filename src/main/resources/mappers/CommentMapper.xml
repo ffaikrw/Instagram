@@ -30,7 +30,7 @@
 	</insert>
 	
 	
-	<select id="selectPostComment" parameterType="int" resultType="com.ffaikrw.instagram.post.comment.model.Comment">
+	<select id="selectCommentList" parameterType="int" resultType="com.ffaikrw.instagram.post.comment.model.Comment">
 	
 		select
 			`id`

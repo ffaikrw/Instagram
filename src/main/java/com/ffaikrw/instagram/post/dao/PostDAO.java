@@ -26,6 +26,5 @@ public interface PostDAO {
 	// 게시물 삭제
 	public int deletePost(@Param("id") int id);
 	
-	
 
 }

@@ -1,5 +1,7 @@
 package com.ffaikrw.instagram.post.comment.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +20,7 @@ public interface CommentDAO {
 	
 	
 	// 댓글 보여주기
-	public Comment selectPostComment(@Param("postId") int postId);
+	public List<Comment> selectCommentList(@Param("postId") int postId);
 	
 
 }

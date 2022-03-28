@@ -38,5 +38,17 @@
 		
 	</delete>
 	
+	
+	<select id="selectLikeCount" parameterType="int" resultType="int">
+	
+		select
+			count(*)
+		from
+			`like`
+		where
+			`postId` = #{postId}
+	
+	</select>
+	
 
 </mapper>

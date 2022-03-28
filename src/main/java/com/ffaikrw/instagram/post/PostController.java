@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ffaikrw.instagram.post.bo.PostBO;
-import com.ffaikrw.instagram.post.model.Post;
+import com.ffaikrw.instagram.post.model.PostDetail;
 
 @Controller
 @RequestMapping("/post")
@@ -22,8 +22,8 @@ public class PostController {
 	@GetMapping("/timeline")
 	public String timelineView(Model model) {
 		
-		List<Post> postList = postBO.getTimeline();
-		model.addAttribute("timeline", postList);
+		List<PostDetail> postList = postBO.getTimeline();
+		model.addAttribute("postList", postList);
 		
 		return "post/timeline";
 	}

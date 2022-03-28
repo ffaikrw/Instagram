@@ -31,7 +31,7 @@
 		
 		<section class="post-section pb-5">
 			
-			<c:forEach var="timeline" items="${ timeline }">
+			<c:forEach var="postDetail" items="${ postList }">
 			<div class="d-flex justify-content-center pt-5">
 			
 				<!-- 게시물 -->
@@ -41,51 +41,55 @@
 					<div class="post-header d-flex justify-content-between">
 						<div class="d-flex align-items-center">
 							<span class="post-header-img text-secondary mt-2 ml-3"><i class="bi bi-circle-fill"></i></span>
-							<span class="post-header-loginId ml-2"><b>${ timeline.loginId }</b></span>
+							<span class="post-header-loginId ml-2"><b>${ postDetail.post.loginId }</b></span>
 						</div>
 						<div class="d-flex align-items-center">
 						<!-- 게시물 삭제 -->
-						<c:if test="${ timeline.userId eq userId }">
-							<button data-post-id="${ timeline.id }" class="delete-btn btn btn-sm btn-danger">삭제</button>
+						<c:if test="${ postDetail.post.userId eq userId }">
+							<button data-post-id="${ postDetail.post.id }" class="delete-btn btn btn-sm btn-danger">삭제</button>
 						</c:if>	
 							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
 						</div>	
 					</div>
 					
 					<!-- 사진 -->
-					<img src="${ timeline.imagePath }" class="img-box">
+					<img src="${ postDetail.post.imagePath }" class="img-box">
 					
 					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
-						<a href="#" data-post-id="${ timeline.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
-						<a href="#" data-post-id="${ timeline.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
-						<b class="like-count">좋아요 10개</b>
+						<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
+						<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
+						<b class="like-count">좋아요 ${ postDetail.likeCount }개</b>
 					</div>
 					
 					<!-- 게시물 내용 -->
 					<div class="content-box ml-3 my-3">
-						<b>${ timeline.loginId }</b>
-						<span>${ timeline.content }</span>
+						<b>${ postDetail.post.loginId }</b>
+						<span>${ postDetail.post.content }</span>
 					</div>
+					
+					<hr class="col-11">
 					
 					<!-- 댓글 내용 -->
 					<div class="comment-box mt-1 ml-3">
+					<c:forEach var="comment" items="${ postDetail.commentList }">
 						<div>
-							<b>ccc</b> <span>댓글!!</span>
+							<b>${ comment.loginId }</b> <span>${ comment.comment }</span>
 						</div>
+					</c:forEach>
 					</div>
 					
 					<!-- 작성 시간 -->
 					<div class="upload-time mt-1 ml-3">
-						<span class="text-secondary"><fmt:formatDate value="${ timeline.createdAt }" pattern="yyyy년 M월 dd일 HH시 m분 s초" /></span>
+						<span class="text-secondary"><fmt:formatDate value="${ postDetail.post.createdAt }" pattern="yyyy년 M월 dd일 HH시 m분 s초" /></span>
 					</div>
 					
 					<!-- 댓글 달기 -->
 					<div class="d-flex mt-2 mb-3 ml-3">
 						<span class="comment-icon pb-2"><i class="bi bi-chat"></i></span>
 						<div class="input-group col-11">
-							<input type="text" id="commentInput${ timeline.id }" class="form-control" placeholder="댓글 달기">
-							<button data-post-id="${ timeline.id }" class="comment-btn btn btn-outline-secondary" type="button">작성</button>
+							<input type="text" id="commentInput${ postDetail.post.id }" class="form-control" placeholder="댓글 달기">
+							<button data-post-id="${ postDetail.post.id }" class="comment-btn btn btn-outline-secondary" type="button">작성</button>
 						</div>
 					</div>
 				</div>

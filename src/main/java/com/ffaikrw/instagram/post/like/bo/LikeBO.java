@@ -24,5 +24,11 @@ public class LikeBO {
 	}
 	
 	
+	// 좋아요 가져오기
+	public int getLikeCount(int postId) {
+		return likeDAO.selectLikeCount(postId);
+	}
+	
+	
 	
 }

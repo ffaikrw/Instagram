@@ -1,5 +1,7 @@
 package com.ffaikrw.instagram.post.comment.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,8 @@ public class CommentBO {
 	
 
 	// 댓글 보여주기
-	public Comment getComment(int postId) {
-		return commentDAO.selectPostComment(postId);
+	public List<Comment> getCommentList(int postId) {
+		return commentDAO.selectCommentList(postId);
 	}
 	
 	
