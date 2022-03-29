@@ -40,7 +40,6 @@ public class PostBO {
 			int postId = post.getId();
 			
 			int likeCount = likeBO.getLikeCount(postId);
-			commentBO.getCommentList(postId);
 			
 			PostDetail postDetail = new PostDetail();
 			

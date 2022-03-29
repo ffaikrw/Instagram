@@ -57,8 +57,18 @@
 					
 					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
-						<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
-						<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
+					<c:choose>
+						<c:when>
+							<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
+						</c:when>
+						<c:when>
+							<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
+						</c:when>
+						<c:otherwise>
+							<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
+							<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
+						</c:otherwise>	
+					</c:choose>
 						<b class="like-count">좋아요 ${ postDetail.likeCount }개</b>
 					</div>
 					
