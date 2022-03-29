@@ -24,4 +24,11 @@ public interface LikeDAO {
 	// 좋아요 개수
 	public int selectLikeCount(@Param("postId") int postId);
 	
+	
+	// 좋아요 중복확인
+	public int selectUserLikeCount(
+			@Param("postId") int postId
+			, @Param("userId") int userId
+			);
+	
 }

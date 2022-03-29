@@ -50,5 +50,18 @@
 	
 	</select>
 	
+	
+	<select id="selectUserLikeCount" parameterType="map" resultType="int">
+		
+		select
+			count(*)
+		from
+			`like`
+		where
+			`postId` = #{postId}
+			and `userId` = #{userId}
+		
+	</select>
+	
 
 </mapper>

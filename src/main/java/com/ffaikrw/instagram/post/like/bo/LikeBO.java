@@ -30,5 +30,13 @@ public class LikeBO {
 	}
 	
 	
+	// 좋아요 중복확인
+	public boolean likeIsDuplicate(int postId, int userId) {
+		
+		int count = likeDAO.selectUserLikeCount(postId, userId);
+		
+		return count != 0;
+		
+	}
 	
 }

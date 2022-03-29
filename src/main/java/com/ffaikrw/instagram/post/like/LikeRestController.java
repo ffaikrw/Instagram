@@ -81,7 +81,15 @@ public class LikeRestController {
 			) {
 		
 		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
 		
+		boolean likeIsDuplicate = likeBO.likeIsDuplicate(postId, userId);
+		
+		Map<String, Boolean> resultMap = new HashMap<>();
+		
+		resultMap.put("like_is_duplicate", likeIsDuplicate);
+		
+		return resultMap;
 		
 	}
 	

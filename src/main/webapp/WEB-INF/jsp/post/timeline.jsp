@@ -156,7 +156,6 @@
 					, success:function(data){
 					
 						if (data.result == "success") {
-							alert("댓글 달기 성공");
 							location.reload();
 						} else {
 							alert("댓글 달기 실패");
@@ -171,6 +170,9 @@
 				
 			});
 			
+			
+			// 좋아요 중복 확인
+
 			
 			
 			// 좋아요 버튼
