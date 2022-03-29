@@ -2,6 +2,9 @@ package com.ffaikrw.instagram.post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,12 @@ public class PostController {
 	
 	// 타임라인 View
 	@GetMapping("/timeline")
-	public String timelineView(Model model) {
+	public String timelineView(Model model, HttpServletRequest request) {
 		
-		List<PostDetail> postList = postBO.getTimeline();
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<PostDetail> postList = postBO.getTimeline(userId);
 		model.addAttribute("postList", postList);
 		
 		return "post/timeline";

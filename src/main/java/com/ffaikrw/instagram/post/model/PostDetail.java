@@ -8,6 +8,7 @@ public class PostDetail {
 	
 	private Post post;
 	private int likeCount;
+	private int userLikeCount;
 	private List<Comment> commentList;
 	
 	
@@ -29,5 +30,12 @@ public class PostDetail {
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
+	public int getUserLikeCount() {
+		return userLikeCount;
+	}
+	public void setUserLikeCount(int userLikeCount) {
+		this.userLikeCount = userLikeCount;
+	}
+	
 	
 }

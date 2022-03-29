@@ -74,24 +74,23 @@ public class LikeRestController {
 	
 	
 	// 좋아요 중복확인 API
-	@GetMapping("/like_duplicate")
-	public Map<String, Boolean> likeIsDuplicate(
-			@RequestParam("postId") int postId
-			, HttpServletRequest request
-			) {
-		
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		
-		boolean likeIsDuplicate = likeBO.likeIsDuplicate(postId, userId);
-		
-		Map<String, Boolean> resultMap = new HashMap<>();
-		
-		resultMap.put("like_is_duplicate", likeIsDuplicate);
-		
-		return resultMap;
-		
-	}
+//	@GetMapping("/like_duplicate")
+//	public Map<String, Integer> likeIsDuplicate(
+//			@RequestParam("postId") int postId
+//			, HttpServletRequest request
+//			) {
+//		
+//		HttpSession session = request.getSession();
+//		int userId = (Integer)session.getAttribute("userId");
+//		
+//		int likeIsDuplicate = likeBO.likeIsDuplicate(postId, userId);
+//		
+//		Map<String, Integer> resultMap = new HashMap<>();
+//		
+//		
+//		return resultMap;
+//		
+//	}
 	
 	
 }

@@ -27,7 +27,7 @@ public class PostBO {
 	private LikeBO likeBO;
 	
 	// 타임라인
-	public List<PostDetail> getTimeline() {
+	public List<PostDetail> getTimeline(int userId) {
 		
 		List<Post> postList = postDAO.selectAllPost();
 		
@@ -36,10 +36,14 @@ public class PostBO {
 		// 포스트마다 댓글, 좋아요 가져오기
 		for (Post post : postList) {
 			
+			// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
+			
 			// postId를 이용해서 좋아요 개수, 댓글 리스트 조회
 			int postId = post.getId();
 			
 			int likeCount = likeBO.getLikeCount(postId);
+			
+			int userLikeCount = likeBO.likeIsDuplicate(postId, userId);
 			
 			PostDetail postDetail = new PostDetail();
 			
@@ -53,6 +57,8 @@ public class PostBO {
 			// 댓글 리스트 set
 			postDetail.setCommentList(commentBO.getCommentList(postId));
 			
+			// 세션에 저장된 사용자의 게시물 별 좋아요 여부 set
+			postDetail.setUserLikeCount(userLikeCount);
 			
 			// 새로운 DTO를 리스트 형태로 구성
 			postDetailList.add(postDetail);
