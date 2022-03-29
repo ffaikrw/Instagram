@@ -197,7 +197,6 @@
 					, success:function(data){
 						
 						if (data.result == "success") {
-							alert("좋아요 성공");
 							location.reload();
 						} else {
 							alert("좋아요 실패");
@@ -228,7 +227,6 @@
 					, success:function(data){
 						
 						if (data.result == "success") {
-							alert("좋아요 취소 성공");
 							location.reload();
 						} else {
 							alert("좋아요 취소 실패");

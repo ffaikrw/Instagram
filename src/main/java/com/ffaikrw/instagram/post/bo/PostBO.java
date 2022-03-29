@@ -36,13 +36,14 @@ public class PostBO {
 		// 포스트마다 댓글, 좋아요 가져오기
 		for (Post post : postList) {
 			
-			// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
 			
 			// postId를 이용해서 좋아요 개수, 댓글 리스트 조회
 			int postId = post.getId();
 			
 			int likeCount = likeBO.getLikeCount(postId);
 			
+			// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
+			// postId와 session에 저장된 userId 가져오기
 			int userLikeCount = likeBO.likeIsDuplicate(postId, userId);
 			
 			PostDetail postDetail = new PostDetail();
@@ -63,8 +64,6 @@ public class PostBO {
 			// 새로운 DTO를 리스트 형태로 구성
 			postDetailList.add(postDetail);
 		}
-		
-		// 그 정보를 하나의 새로운 데이터 클래스(DTO)를 만들어서 구성
 		
 		return postDetailList;
 	}
