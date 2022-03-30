@@ -44,7 +44,7 @@ public class PostBO {
 			
 			// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
 			// postId와 session에 저장된 userId 가져오기
-			int userLikeCount = likeBO.likeIsDuplicate(postId, userId);
+			boolean userLikeDuplicate = likeBO.likeIsDuplicate(postId, userId);
 			
 			PostDetail postDetail = new PostDetail();
 			
@@ -59,7 +59,7 @@ public class PostBO {
 			postDetail.setCommentList(commentBO.getCommentList(postId));
 			
 			// 세션에 저장된 사용자의 게시물 별 좋아요 여부 set
-			postDetail.setUserLikeCount(userLikeCount);
+			postDetail.setUserLikeDuplicate(userLikeDuplicate);
 			
 			// 새로운 DTO를 리스트 형태로 구성
 			postDetailList.add(postDetail);

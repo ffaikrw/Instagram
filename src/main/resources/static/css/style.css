@@ -14,6 +14,10 @@ header {
 	text-decoration: none;
 }
 
+.header-loginId:hover {
+	text-decoration: none;
+}
+
 .post-section {
 	background-color: #f7f7f7;
 }
@@ -91,6 +95,29 @@ header {
 
 .camera-icon {
 	font-size: 30px;
+}
+
+.userInfo {
+	background-color: #f7f7f7;
+}
+
+.userInfoImage {
+	font-size: 130px;
+}
+
+.userLoginId {
+	font-size: 30px;
+}
+
+.userPostList {
+	border-top: 1px solid #dedede;
+	padding-top: 25px;
+}
+
+.user-post-box {
+	width: 350px;
+	height: 350px;
+	margin: 25px;
 }
 
 footer {

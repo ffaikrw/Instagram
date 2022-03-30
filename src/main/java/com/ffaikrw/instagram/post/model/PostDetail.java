@@ -8,9 +8,8 @@ public class PostDetail {
 	
 	private Post post;
 	private int likeCount;
-	private int userLikeCount;
+	private boolean userLikeDuplicate;
 	private List<Comment> commentList;
-	
 	
 	public Post getPost() {
 		return post;
@@ -30,12 +29,13 @@ public class PostDetail {
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
-	public int getUserLikeCount() {
-		return userLikeCount;
+	public boolean isUserLikeDuplicate() {
+		return userLikeDuplicate;
 	}
-	public void setUserLikeCount(int userLikeCount) {
-		this.userLikeCount = userLikeCount;
+	public void setUserLikeDuplicate(boolean userLikeDuplicate) {
+		this.userLikeDuplicate = userLikeDuplicate;
 	}
+
 	
 	
 }

@@ -31,9 +31,11 @@ public class LikeBO {
 	
 	
 	// 좋아요 여부 확인
-	public int likeIsDuplicate(int postId, int userId) {
+	public boolean likeIsDuplicate(int postId, int userId) {
 		
-		return likeDAO.selectUserLikeCount(postId, userId);
+		int count = likeDAO.selectUserLikeCount(postId, userId);
+		
+		return count != 0;
 		
 	}
 	

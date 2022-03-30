@@ -58,15 +58,12 @@
 					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
 					<c:choose>
-						<c:when test="${ postDetail.userLikeCount == 0 }">
-							<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
-						</c:when>
-						<c:when test="${ postDetail.userLikeCount == 1 }">
+						<!-- is로 시작하는 멤버변수를 사용할 땐 is 뒤의 이름만 사용하면 됨 -->
+						<c:when test="${ postDetail.userLikeDuplicate }">
 							<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
 						</c:when>
 						<c:otherwise>
 							<a href="#" data-post-id="${ postDetail.post.id }" class="like-btn"><i class="bi bi-heart like-icon text-dark"></i></a>
-							<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
 						</c:otherwise>
 					</c:choose>
 						<b class="like-count">좋아요 ${ postDetail.likeCount }개</b>

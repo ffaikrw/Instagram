@@ -9,7 +9,7 @@
 			<h2 class="ml-3"><a href="/post/create_view"  class="text-dark"><i class="bi bi-plus-circle"></i></a></h2>
 			<h2 class="text-dark ml-3"><i class="bi bi-heart"></i></h2>
 		<c:if test="${ not empty userId }" >
-			<h5 class="ml-3 pt-1">${ userLoginId }</h5>
+			<h5 class="ml-3 pt-1"><a href="/profile_view?userId=${ userId }" class="header-loginId text-dark">${ userLoginId }</a></h5>
 			<h5 class="ml-3 pt-1"><a href="/user/sign_out" class="text-dark">로그아웃</a></h5>
 		</c:if>
 		</div>
