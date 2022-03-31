@@ -35,27 +35,17 @@
 					<i class="bi bi-circle-fill text-secondary userInfoImage"></i>
 				</div>
 				<div class="ml-5 mt-3">
-					<p class="userLoginId">jhwn0202</p>
+					<p class="userLoginId">${ userLoginId }</p>
 					<p>게시물 <b>9</b></p>
 				</div>
 			</div>
 			
 			<div class="userPostList d-flex flex-wrap">
-				<div class="user-post-box bg-danger d-flex align-items-center">
-					<img width="350px" height="350px">
-				</div>
-				<div class="user-post-box bg-primary">
-					<img width="350px" height="350px">
-				</div>
-				<div class="user-post-box bg-info">
-					
-				</div>
-				<div class="user-post-box bg-success">
-					
-				</div>
-				<div class="user-post-box bg-warning">
-					
-				</div>
+				<c:forEach var="postImg" items="${ userPostList.postListByUserId }">
+					<div class="user-post-box bg-danger d-flex align-items-center">
+						<img src="${ postImg.imagePath }" width="350px" height="350px">
+					</div>
+				</c:forEach>
 			</div>
 		
 		</section>

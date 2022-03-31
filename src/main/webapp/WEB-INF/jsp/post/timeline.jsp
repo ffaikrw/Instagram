@@ -41,14 +41,16 @@
 					<div class="post-header d-flex justify-content-between">
 						<div class="d-flex align-items-center">
 							<span class="post-header-img text-secondary mt-2 ml-3"><i class="bi bi-circle-fill"></i></span>
-							<span class="post-header-loginId ml-2"><b>${ postDetail.post.loginId }</b></span>
+							<span class="post-header-loginId ml-2"><b><a href="/profile_view?userId=${ postDetail.post.userId }" class="text-dark">${ postDetail.post.loginId }</a></b></span>
 						</div>
 						<div class="d-flex align-items-center">
 						<!-- 게시물 삭제 -->
 						<c:if test="${ postDetail.post.userId eq userId }">
 							<button data-post-id="${ postDetail.post.id }" class="delete-btn btn btn-sm btn-danger">삭제</button>
-						</c:if>	
-							<span class="more-icon text-dark mr-3"><i class="bi bi-three-dots-vertical"></i></span>
+						</c:if>
+							<a href="#" data-toggle="modal" data-target="#moreModal" class="more-icon mr-3 text-dark">
+								<i class="bi bi-three-dots-vertical"></i>
+							</a>
 						</div>	
 					</div>
 					
@@ -58,7 +60,6 @@
 					<!-- 좋아요 -->
 					<div class="like mt-1 ml-3">
 					<c:choose>
-						<!-- is로 시작하는 멤버변수를 사용할 땐 is 뒤의 이름만 사용하면 됨 -->
 						<c:when test="${ postDetail.userLikeDuplicate }">
 							<a href="#" data-post-id="${ postDetail.post.id }" class="delete-like-btn"><i class="bi bi-heart-fill delete-like-icon text-danger"></i></a>
 						</c:when>
@@ -106,6 +107,17 @@
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+		
+		<!-- Modal -->
+		<div class="modal fade" id="moreModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+				    <div class="modal-body text-center">
+				        <a href="#" class="text-dark">삭제하기</a>
+				    </div>
+			    </div>
+			</div>
+		</div>
 	
 	</div>
 	

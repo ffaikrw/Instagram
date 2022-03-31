@@ -49,14 +49,52 @@
 	</select>
 	
 	
+	<select id="selectPost" parameterType="int" resultType="com.ffaikrw.instagram.post.model.Post">
+		
+		select
+			`id`
+			, `userId`
+			, `loginId`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		from
+			`post`
+		where
+			`id` = #{postId}
+	
+	</select>
+	
+	
 	<delete id="deletePost" parameterType="int">
 	
 		delete from
 			`post`
 		where
-			id = #{id}
+			id = #{postId}
+			and userId = #{userId}
 	
 	</delete>
 
+
+	<select id="selectPostByUserId" parameterType="int" resultType="com.ffaikrw.instagram.post.model.Post">
+		
+		select
+			`id`
+			, `userId`
+			, `loginId`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		from
+			`post`
+		where
+			`userId` = #{userId}
+		order by
+			`id` desc
+		
+	</select>
 
 </mapper>

@@ -6,14 +6,14 @@ import com.ffaikrw.instagram.post.model.Post;
 
 public class Profile {
 	
-	private List<Post> userPostList;
+	private List<Post> postListByUserId;
 
-	public List<Post> getUserPostList() {
-		return userPostList;
+	public List<Post> getPostListByUserId() {
+		return postListByUserId;
 	}
 
-	public void setUserPostList(List<Post> userPostList) {
-		this.userPostList = userPostList;
+	public void setPostListByUserId(List<Post> postListByUserId) {
+		this.postListByUserId = postListByUserId;
 	}
-	
+
 }
