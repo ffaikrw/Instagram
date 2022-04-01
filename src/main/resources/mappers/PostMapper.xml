@@ -73,7 +73,6 @@
 			`post`
 		where
 			id = #{postId}
-			and userId = #{userId}
 	
 	</delete>
 

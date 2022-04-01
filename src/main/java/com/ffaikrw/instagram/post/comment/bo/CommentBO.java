@@ -26,5 +26,10 @@ public class CommentBO {
 	}
 	
 	
+	// 해당 포스트의 댓글 삭제하기
+	public int deleteCommentByPostId(int postId) {
+		return commentDAO.deleteCommentByPostId(postId);
+	}
+	
 	
 }

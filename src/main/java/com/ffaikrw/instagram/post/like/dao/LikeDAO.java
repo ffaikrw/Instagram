@@ -31,4 +31,8 @@ public interface LikeDAO {
 			, @Param("userId") int userId
 			);
 	
+	
+	// 특정 포스트의 모든 좋아요 삭제
+	public int deleteLikeByPostId(@Param("postId") int postId);
+	
 }

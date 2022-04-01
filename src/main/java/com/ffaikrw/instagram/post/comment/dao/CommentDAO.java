@@ -22,5 +22,9 @@ public interface CommentDAO {
 	// 댓글 보여주기
 	public List<Comment> selectCommentList(@Param("postId") int postId);
 	
+	
+	// 해당 포스트의 댓글 삭제하기
+	public int deleteCommentByPostId(@Param("postId") int postId);
+	
 
 }

@@ -23,14 +23,12 @@ public interface PostDAO {
 			);
 	
 	
-	// 특정 게시물 보기
+	// 특정 게시물 가져오기
 	public Post selectPost(@Param("postId") int postId);
 	
 	
 	// 게시물 삭제
-	public int deletePost(
-			@Param("postId") int postId
-			, @Param("userId") int userId);
+	public int deletePost(@Param("postId") int postId);
 	
 	
 	// 로그인한 사용자의 게시물 가져오기

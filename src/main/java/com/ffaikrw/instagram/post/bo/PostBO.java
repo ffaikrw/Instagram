@@ -27,7 +27,7 @@ public class PostBO {
 	private LikeBO likeBO;
 	
 	// 타임라인
-	public List<PostDetail> getTimeline(int userId) {
+	public List<PostDetail> getTimeline(Integer userId) {
 		
 		List<Post> postList = postDAO.selectAllPost();
 		
@@ -42,10 +42,6 @@ public class PostBO {
 			
 			int likeCount = likeBO.getLikeCount(postId);
 			
-			// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
-			// postId와 session에 저장된 userId 가져오기
-			boolean userLikeDuplicate = likeBO.likeIsDuplicate(postId, userId);
-			
 			PostDetail postDetail = new PostDetail();
 			
 			// post 데이터 setter
@@ -58,9 +54,18 @@ public class PostBO {
 			// 댓글 리스트 set
 			postDetail.setCommentList(commentBO.getCommentList(postId));
 			
-			// 세션에 저장된 사용자의 게시물 별 좋아요 여부 set
-			postDetail.setUserLikeDuplicate(userLikeDuplicate);
+			if (userId != null) {
+				
+				// 해당 포스트에 로그인한 사용자가 좋아요를 눌렀는지 아닌지
+				// postId와 session에 저장된 userId 가져오기
+				boolean userLikeDuplicate = likeBO.likeIsDuplicate(postId, userId);
+				
+				// 세션에 저장된 사용자의 게시물 별 좋아요 여부 set
+				postDetail.setUserLikeDuplicate(userLikeDuplicate);
+				
+			} 
 			
+	
 			// 새로운 DTO를 리스트 형태로 구성
 			postDetailList.add(postDetail);
 		}
@@ -79,27 +84,27 @@ public class PostBO {
 	}
 	
 	
-	// 특정 게시물 보기
-	public Post getPost(int postId) {
-		return postDAO.selectPost(postId);
-	}
-	
-	
 	// 게시물 삭제
 	public int deletePost(int postId, int userId) {
 		
-		Post post = this.getPost(postId);
+		Post post = postDAO.selectPost(postId);
 		
-		// 파일 삭제
-		FileManagerService.removeFile(post.getImagePath());
+		// 로그인한 사용자와 포스트 작성자가 같을 경우에만 삭제 가능
+		if(post.getUserId() == userId) {
+			
+			// 파일 삭제
+			FileManagerService.removeFile(post.getImagePath());
+			
+			// 좋아요 삭제
+			likeBO.deleteLikeByPostId(postId);
+			
+			// 댓글 삭제
+			commentBO.deleteCommentByPostId(postId);
+			
+			return postDAO.deletePost(postId);
+		}
 		
-		// 좋아요 삭제
-		
-		
-		// 댓글 삭제
-		
-		
-		return postDAO.deletePost(postId, userId);
+		return 0;
 	}
 	
 	
