@@ -21,11 +21,22 @@ public class ProfileController {
 			, Model model	
 			) {
 		
-		Profile profile = profileBO.getPostListByUserId(userId);
-		model.addAttribute("userPostList", profile);
+		Profile profile = profileBO.getProfileByUserId(userId);
+		model.addAttribute("userProfile", profile);
 		
 		return "profile/userProfile";
 	}
 	
+	@GetMapping("post_modal_view")
+	public String postModalView(
+			@RequestParam("postId") int postId
+			, Model model
+			) {
+		
+		Profile profile = profileBO.getPost(postId);
+		model.addAttribute("userPost", profile);
+		
+		return "profile/userProfile";
+	}
 	
 }

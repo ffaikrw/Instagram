@@ -6,6 +6,9 @@
 	margin: auto;
 }
 
+
+/* header.jsp */
+
 header {
 	height: 50px;
 }
@@ -17,6 +20,13 @@ header {
 .header-loginId:hover {
 	text-decoration: none;
 }
+
+.logout-modal {
+	border-top: 1px solid #dedede;
+}
+
+
+/* timeline.jsp */
 
 .post-section {
 	background-color: #f7f7f7;
@@ -39,6 +49,10 @@ header {
 	font-size: 15px;
 }
 
+.post-header-loginId:hover {
+	text-decoration: none;
+}
+
 .more-icon {
 	font-size: 20px;
 	margin-bottom: 10px;
@@ -50,6 +64,14 @@ header {
 
 .content-box {
 	font-size: 15px;
+}
+
+.content-loginId:hover {
+	text-decoration: none;
+}
+
+.content {
+	white-space: pre-wrap;
 }
 
 .like-icon {
@@ -68,10 +90,16 @@ header {
 	font-size: 15px;
 }
 
+.upload-time {
+	font-size: 12px;
+}
+
 .comment-icon {
 	font-size: 25px;
 }
 
+
+/* signIn.jsp 및 signUp.jsp */
 .join-box {
 	width: 400px;
 }
@@ -83,6 +111,9 @@ header {
 .input-box {
 	width: 300px;
 }
+
+
+/* create.jsp */
 
 .create-box {
 	width: 600px;
@@ -97,8 +128,12 @@ header {
 	font-size: 30px;
 }
 
+
+/* userProfile.jsp */
+
 .userInfo {
 	background-color: #f7f7f7;
+	height: 150px;
 }
 
 .userInfoImage {
@@ -115,11 +150,35 @@ header {
 }
 
 .user-post-box {
+	position: relative;
 	width: 350px;
 	height: 350px;
 	margin: 25px;
 }
 
+.user-post-box img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(50, 50);
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	margin: auto;
+}
+
+.post-img-modal {
+	width: 798px;
+}
+
+
+.post-content-modal {
+	width: 798px;
+}
+
+
+
+/* footer.jsp */
 footer {
 	height: 50px;
 	color: #999;

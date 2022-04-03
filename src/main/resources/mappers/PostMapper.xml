@@ -77,7 +77,7 @@
 	</delete>
 
 
-	<select id="selectPostByUserId" parameterType="int" resultType="com.ffaikrw.instagram.post.model.Post">
+	<select id="selectPostListByUserId" parameterType="int" resultType="com.ffaikrw.instagram.post.model.Post">
 		
 		select
 			`id`
@@ -95,5 +95,18 @@
 			`id` desc
 		
 	</select>
+	
+	
+	<select id="getPostCountByUserId" parameterType="int" resultType="int">
+	
+		select
+			count(*)
+		from
+			`post`
+		where
+			`userId` = #{userId}
+	
+	</select>
+	
 
 </mapper>

@@ -108,9 +108,32 @@ public class PostBO {
 	}
 	
 	
-	// 로그인한 사용자의 게시물 가져오기
-	public List<Post> getPostByUser(int userId) {
-		return postDAO.selectPostByUserId(userId);
+	// 특정 사용자의 게시물 리스트 가져오기
+	public List<Post> getPostListByUserId(int userId) {
+		return postDAO.selectPostListByUserId(userId);
+	}
+	
+	
+	// 특정 사용자의 게시물 수
+	public int getPostCountByUserId(int userId) {
+		return postDAO.getPostCountByUserId(userId);
+	}
+	
+	
+	// 특정 사용자의 특정 게시물 가져오기
+	public PostDetail getPost(int postId) {
+		
+		PostDetail postDetail = new PostDetail();
+		
+		Post post = postDAO.selectPost(postId);
+		postDetail.setPost(post);
+		
+		int likeCount = likeBO.getLikeCount(postId);
+		postDetail.setLikeCount(likeCount);
+		
+		postDetail.setCommentList(commentBO.getCommentList(postId));
+		
+		return postDetail;
 	}
 
 }

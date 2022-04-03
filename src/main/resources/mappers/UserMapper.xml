@@ -61,4 +61,16 @@
 		
 	</select>
 	
+	
+	<select id="selectLoginIdByUserId" parameterType="int" resultType="String">
+		
+		select
+			`loginId`
+		from
+			`user`
+		where
+			`id` = #{userId}
+	
+	</select>
+	
 </mapper>

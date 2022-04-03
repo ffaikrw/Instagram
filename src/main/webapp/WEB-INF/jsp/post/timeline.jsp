@@ -41,12 +41,15 @@
 					<div class="post-header d-flex justify-content-between">
 					
 						<div class="d-flex align-items-center">
-							<span class="post-header-img text-secondary mt-2 ml-3"><i class="bi bi-circle-fill"></i></span>
-							<span class="post-header-loginId ml-2"><b><a href="/profile_view?userId=${ postDetail.post.userId }" class="text-dark">${ postDetail.post.loginId }</a></b></span>
+							<span class="ml-3"><b>
+								<a href="/profile_view?userId=${ postDetail.post.userId }" class="post-header-loginId text-dark">
+									${ postDetail.post.loginId }
+								</a>
+							</b></span>
 						</div>
 						
 						<div class="d-flex align-items-center">
-							<!-- 게시물 삭제 - 더보기 버튼 -->
+						<!-- 게시물 삭제 - 더보기 버튼 -->
 						<c:choose>
 							<c:when test="${ postDetail.post.userId eq userId }">
 								<a href="#" data-toggle="modal" data-target="#moreModal" data-post-id="${ postDetail.post.id }" class="more-icon mr-3 text-dark">
@@ -80,9 +83,16 @@
 					</div>
 					
 					<!-- 게시물 내용 -->
-					<div class="content-box ml-3 my-3">
-						<b>${ postDetail.post.loginId }</b>
-						<span>${ postDetail.post.content }</span>
+					<div class="content-box ml-3 mt-3">
+						<b><a href="/profile_view?userId=${ postDetail.post.userId }" class="content-loginId text-dark">
+							${ postDetail.post.loginId }
+						</a></b>
+						<span class="content">${ postDetail.post.content }</span>
+					</div>
+					
+					<!-- 작성 시간 -->
+					<div class="upload-time mt-1 ml-3">
+						<span class="text-secondary"><fmt:formatDate value="${ postDetail.post.createdAt }" pattern="yyyy년 M월 d일 H시 m분" /></span>
 					</div>
 					
 					<hr class="col-11">
@@ -91,14 +101,14 @@
 					<div class="comment-box mt-1 ml-3">
 					<c:forEach var="comment" items="${ postDetail.commentList }">
 						<div>
-							<b>${ comment.loginId }</b> <span>${ comment.comment }</span>
+							<b>
+								<a href="/profile_view?userId=${ comment.userId }" class="text-dark">
+									${ comment.loginId }
+								</a>
+							</b>
+							<span>${ comment.comment }</span>
 						</div>
 					</c:forEach>
-					</div>
-					
-					<!-- 작성 시간 -->
-					<div class="upload-time mt-1 ml-3">
-						<span class="text-secondary"><fmt:formatDate value="${ postDetail.post.createdAt }" pattern="yyyy년 M월 dd일 HH시 m분 s초" /></span>
 					</div>
 					
 					<!-- 댓글 달기 -->
@@ -130,7 +140,7 @@
 		</div>
 	</div>
 	
-	<!-- Modal -->
+	<!-- Modal2 -->
 	<div class="modal fade" id="moreModal2" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
@@ -171,7 +181,7 @@
 				
 				let userId = $(this).data("user-id");
 				
-				alert(userId);
+				location.href="/profile_view?userId=" + userId;
 				
 			});
 			

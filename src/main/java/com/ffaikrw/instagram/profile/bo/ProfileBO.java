@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ffaikrw.instagram.post.bo.PostBO;
 import com.ffaikrw.instagram.profile.model.Profile;
+import com.ffaikrw.instagram.user.bo.UserBO;
 
 @Service
 public class ProfileBO {
@@ -12,13 +13,29 @@ public class ProfileBO {
 	@Autowired
 	private PostBO postBO;
 	
-	public Profile getPostListByUserId(int userId) {
+	@Autowired
+	private UserBO userBO;
+	
+	public Profile getProfileByUserId(int userId) {
 		
 		Profile profile = new Profile();
 		
-		profile.setPostListByUserId(postBO.getPostByUser(userId));
+		profile.setLoginIdByUserId(userBO.getLoginIdByUserId(userId));
+		profile.setPostListByUserId(postBO.getPostListByUserId(userId));
+		profile.setPostCountByUserId(postBO.getPostCountByUserId(userId));
 		
 		return profile;
+	}
+	
+	
+	public Profile getPost(int postId) {
+		
+		Profile profile = new Profile();
+		
+		profile.getPostDetail();
+		
+		return profile;
+		
 	}
 	
 }

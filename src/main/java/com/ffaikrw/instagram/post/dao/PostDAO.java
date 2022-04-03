@@ -31,7 +31,13 @@ public interface PostDAO {
 	public int deletePost(@Param("postId") int postId);
 	
 	
-	// 로그인한 사용자의 게시물 가져오기
-	public List<Post> selectPostByUserId(@Param("userId") int userId);
+	// 특정 사용자의 게시물 리스트 가져오기
+	public List<Post> selectPostListByUserId(@Param("userId") int userId);
+	
+	
+	// 특정 사용자의 게시물 수
+	public int getPostCountByUserId(@Param("userId") int userId);
+	
+	
 
 }

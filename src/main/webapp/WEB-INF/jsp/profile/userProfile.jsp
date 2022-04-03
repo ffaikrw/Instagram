@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,20 +31,26 @@
 			
 		<section>
 			
-			<div class="userInfo d-flex align-items-center">
-				<div class="userImageBox ml-3 mb-4">
-					<i class="bi bi-circle-fill text-secondary userInfoImage"></i>
-				</div>
-				<div class="ml-5 mt-3">
-					<p class="userLoginId">${ userLoginId }</p>
-					<p>게시물 <b>9</b></p>
+			<div class="userInfo d-flex align-items-center justify-content-center">
+				<div class="profile-header ml-5 mt-3 text-center">
+					<div class="userLoginId mb-2">${ userProfile.loginIdByUserId }</div>
+					<div>게시물 <b>${ userProfile.postCountByUserId }</b></div>
 				</div>
 			</div>
 			
 			<div class="userPostList d-flex flex-wrap">
-				<c:forEach var="postImg" items="${ userPostList.postListByUserId }">
+				<c:forEach var="post" items="${ userProfile.postListByUserId }">
 					<div class="user-post-box bg-danger d-flex align-items-center">
-						<img src="${ postImg.imagePath }" width="350px" height="350px">
+					<fmt:formatDate var="createdDate" value="${ post.createdAt }" pattern="yyyy년 M월 d일 H시 m분" />
+						<a href="#" data-toggle="modal" data-target="#postModal"
+						data-post-id="${ post.id }"
+						data-img-id="${ post.imagePath }"
+						data-login-id="${ post.loginId }"
+						data-content-id="${ post.content }"
+						data-date-id="${ createdDate }"
+						class="post-modal">
+							<img src="${ post.imagePath }">
+						</a>
 					</div>
 				</c:forEach>
 			</div>
@@ -53,6 +60,85 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	
 	</div>
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="postModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		    <div id="modalContent" class="modal-content">
+			    <div class="modal-body p-0 m-0">
+			    	<div class="post-img-modal bg-success">
+			    		<img id="modalImg" width="798px">
+			    	</div>
+			    	<div class="post-content-modal mb-3">
+			    		<!-- 게시글 내용 -->
+			    		<div class="content-box ml-3 mt-3">
+							<b id="modalLoginId"></b>
+							<span id="modalPostContent" class="content"></span>
+						</div>
+						<!-- 작성 시간 -->
+						<div class="upload-time mt-1 ml-3">
+							<span id="modalDate" class="text-secondary"></span>
+						</div>
+						
+						<hr class="col-11">
+						
+						<div class="d-flex justify-content-between mt-2 mb-3 ml-3">
+							<div class="like pl-1">
+							<c:choose>
+								<c:when test="${ post.userId eq userId }">
+									<a href="#" id="modalFillHeart" class="delete-like-btn">
+										<i class="bi bi-heart-fill delete-like-icon text-danger"></i>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" id="modalHeart" class="like-btn">
+										<i class="bi bi-heart like-icon text-dark"></i>
+									</a>
+								</c:otherwise>
+							</c:choose>
+							</div>
+							<div class="pt-2 pr-3">
+								<a href="#" class="text-dark">자세히 보기</a>
+							</div>
+						</div>
+			    	</div>
+			    </div>
+		    </div>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+	
+		$(document).ready(function(){
+			
+			// 게시물 모달
+			$(".post-modal").on("click", function(e){
+				
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				let imgId = $(this).data("img-id");
+				
+				
+				$("#modalContent").data("post-id", postId);
+				$("#modalFillHeart").data("post-id", postId);
+				$("#modalHeart").data("post-id", postId);
+				$("#modalImg").attr("src", imgId);
+				$("#modalLoginId").text($(this).data("login-id"));
+				$("#modalPostContent").text($(this).data("content-id"));
+				$("#modalDate").text($(this).data("date-id"));
+				
+			});
+			
+			
+			
+			
+		});
+	
+	</script>
 	
 </body>
 </html>

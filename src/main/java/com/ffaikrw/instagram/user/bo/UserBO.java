@@ -51,4 +51,10 @@ public class UserBO {
 		
 	}
 	
+	
+	// 특정 사용자의 loginId 가져오기
+	public String getLoginIdByUserId(int userId) {
+		return userDAO.selectLoginIdByUserId(userId);
+	}
+	
 }
