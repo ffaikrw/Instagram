@@ -83,23 +83,11 @@
 						
 						<hr class="col-11">
 						
-						<div class="d-flex justify-content-between mt-2 mb-3 ml-3">
-							<div class="like pl-1">
-							<c:choose>
-								<c:when test="${ post.userId eq userId }">
-									<a href="#" id="modalFillHeart" class="delete-like-btn">
-										<i class="bi bi-heart-fill delete-like-icon text-danger"></i>
-									</a>
-								</c:when>
-								<c:otherwise>
-									<a href="#" id="modalHeart" class="like-btn">
-										<i class="bi bi-heart like-icon text-dark"></i>
-									</a>
-								</c:otherwise>
-							</c:choose>
-							</div>
+						<div class="d-flex justify-content-end mt-2 mb-3 ml-3">
 							<div class="pt-2 pr-3">
-								<a href="#" class="text-dark">자세히 보기</a>
+								<a href="#" id="modalPostDetail" class="modalDetail text-dark">
+									<i class="bi bi-emoji-smile text-dark"></i> <b class="modalDetailText">자세히 보기</b>
+								</a>
 							</div>
 						</div>
 			    	</div>
@@ -130,9 +118,21 @@
 				$("#modalLoginId").text($(this).data("login-id"));
 				$("#modalPostContent").text($(this).data("content-id"));
 				$("#modalDate").text($(this).data("date-id"));
+				$("#modalPostDetail").data("post-id", postId);
 				
 			});
 			
+			
+			// 자세히 보기 링크
+			$("#modalPostDetail").on("click", function(e){
+				
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				location.href = "/profile_detail_view?postId=" + postId;
+				
+			});
 			
 			
 			

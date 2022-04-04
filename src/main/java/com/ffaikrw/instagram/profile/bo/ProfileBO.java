@@ -28,11 +28,11 @@ public class ProfileBO {
 	}
 	
 	
-	public Profile getPost(int postId) {
+	public Profile getPost(int postId, Integer userId) {
 		
 		Profile profile = new Profile();
 		
-		profile.getPostDetail();
+		profile.setPostDetail(postBO.getPost(postId, userId));
 		
 		return profile;
 		

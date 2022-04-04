@@ -78,6 +78,14 @@ header {
 	font-size: 25px;
 }
 
+.delete-like-btn:hover {
+	text-decoration: none;
+}
+
+.like-btn:hover {
+	text-decoration: none;
+}
+
 .delete-like-icon {
 	font-size: 25px;
 }
@@ -174,6 +182,26 @@ header {
 
 .post-content-modal {
 	width: 798px;
+}
+
+.userPostDetail-header:hover {
+	text-decoration: none;
+}
+
+.trash-bin-icon {
+	font-size: 25px;
+}
+
+.modalDetail {
+	font-size: 25px;
+}
+
+.modalDetailText {
+	font-size: 15px;
+}
+
+.modalDetail:hover {
+	text-decoration: none;
 }
 
 

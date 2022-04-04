@@ -121,7 +121,7 @@ public class PostBO {
 	
 	
 	// 특정 사용자의 특정 게시물 가져오기
-	public PostDetail getPost(int postId) {
+	public PostDetail getPost(int postId, Integer userId) {
 		
 		PostDetail postDetail = new PostDetail();
 		
@@ -130,6 +130,14 @@ public class PostBO {
 		
 		int likeCount = likeBO.getLikeCount(postId);
 		postDetail.setLikeCount(likeCount);
+			
+		if (userId != null) {
+			
+			boolean userLikeDuplicate = likeBO.likeIsDuplicate(postId, userId);
+			
+			postDetail.setUserLikeDuplicate(userLikeDuplicate);
+			
+		} 
 		
 		postDetail.setCommentList(commentBO.getCommentList(postId));
 		
