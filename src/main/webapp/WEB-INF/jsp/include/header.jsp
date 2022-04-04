@@ -9,7 +9,6 @@
 		<c:choose>
 			<c:when test="${ not empty userId }" >
 				<h3 class="ml-3"><a href="/post/create_view"  class="text-dark"><i class="bi bi-plus-circle"></i></a></h3>
-				<h3 class="text-dark ml-3"><i class="bi bi-heart"></i></h3>
 				<h5 class="ml-3 pt-1">
 					<a href="#" data-toggle="modal" data-target="#loginIdModal" class="header-loginId mr-3 text-dark">
 						${ userLoginId } 님
